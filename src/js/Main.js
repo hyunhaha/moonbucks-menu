@@ -1,4 +1,4 @@
-import MenuList from './MenuLIst.js';
+import MenuList from './MenuList.js';
 
 export default function Main({ $app, initialState, updateMenuItems, editMenuItems, deleteMenuItems, checkSoldOut }) {
 
