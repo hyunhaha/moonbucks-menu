@@ -8,7 +8,14 @@ export default function App($app) {
     currentText: '☕ 에스프레소',
     currentCategoryMenuItems: []
   }
+  this.wrap1 = document.createElement('div');
+  this.wrap1.className = 'd-flex justify-center mt-5 w-100'
 
+  this.wrap2 = document.createElement('div');
+  this.wrap2.className = 'w-100';
+
+  $app.appendChild(this.wrap1)
+  this.wrap1.appendChild(this.wrap2)
 
   this.getItems = currentCategory => {
     api.getData(currentCategory).then(res => {
@@ -21,7 +28,7 @@ export default function App($app) {
 
 
   const header = new Header({
-    $app,
+    $app: this.wrap2,
     onClick: (categoryName, text) => {
       this.setState({
         ...this.state,
@@ -34,7 +41,7 @@ export default function App($app) {
 
 
   const main = new Main({
-    $app,
+    $app: this.wrap2,
     initialState: { ...this.state },
     updateMenuItems: async (name) => {
       await api.postData(this.state.currentCategory, name);
@@ -65,11 +72,11 @@ export default function App($app) {
   };
 
 
-  const init = async () => {
+  this.init = async () => {
     header.render();
     api.getData(this.state.currentCategory).then(res => {
       this.setState({ ...this.state, currentCategoryMenuItems: res })
     });
   }
-  init()
+  this.init()
 }
