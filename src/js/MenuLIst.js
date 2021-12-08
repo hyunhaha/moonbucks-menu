@@ -28,8 +28,7 @@ export default function MenuList({ initialState, updateMenuItems, editMenuItems,
       if (child.classList && child.classList.contains('menu-name')) {
         const originMenu = child.innerText;
         const editedMenu = window.prompt('메뉴명을 수정하세요', child.innerText);
-
-        if (editedMenu === originMenu) return;
+        if (editedMenu === null || editedMenu === originMenu) return;
         this.editMenuItems(elementId, editedMenu);
         break;
       }
