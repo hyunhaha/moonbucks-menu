@@ -74,7 +74,7 @@ export default function App($app) {
 
   this.init = async () => {
     header.render();
-    api.getData(this.state.currentCategory).then(res => {
+    await api.getData(this.state.currentCategory).then(res => {
       this.setState({ ...this.state, currentCategoryMenuItems: res })
     });
   }
